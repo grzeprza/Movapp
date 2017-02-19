@@ -13,6 +13,7 @@
     android:horizontalSpacing="10dp"
     android:stretchMode="columnWidth"
     android:gravity="center"
+    android:columnWidth="90dp"
     tools:context="com.udacity.grzeprza.movapp.MainActivity">
 
 </GridView>
