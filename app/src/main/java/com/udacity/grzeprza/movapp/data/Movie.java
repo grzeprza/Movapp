@@ -1,7 +1,9 @@
 package com.udacity.grzeprza.movapp.data;
 
-import android.provider.MediaStore;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,29 +11,77 @@ import java.util.Date;
  */
 
 /**Representation of movie object, due to requirements*/
-public class Movie {
+public class Movie implements Parcelable{
 
     /**Variable stores movie title*/
     private String title;
 
     /**Variable stoes movie thumbnails*/
-    private MediaStore.Images.Thumbnails thumbnails;
+    private Integer thumbnails;
 
     /**Variable stores movie overview, called also plot synopsis*/
     private String overview;
 
     /**Variable stores users rating of movie, called also vote avarage*/
-    private Float userRating;
+    private Double userRating;
 
     /**Variable stores release date*/
     private Date releaseDate;
 
-    public Movie(String title, MediaStore.Images.Thumbnails thumbnails, String overview, Float userRating, Date releaseDate) {
+    /**Default movie constructor*/
+    public Movie() {
+    }
+
+    /**Movie constructor*/
+    public Movie(String title, Integer thumbnails, String overview, Double userRating, Date releaseDate) {
         this.title = title;
         this.thumbnails = thumbnails;
         this.overview = overview;
         this.userRating = userRating;
         this.releaseDate = releaseDate;
+    }
+
+    /**Parcelable Movie constructor*/
+    public Movie(Parcel in) {
+        this.title = in.readString();
+        this.thumbnails = in.readInt();
+        this.overview = in.readString();
+        this.userRating = in.readDouble();
+        this.releaseDate = new Date(in.readLong());
+
+    }
+
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+        dest.writeString(title);
+        dest.writeInt(thumbnails);
+        dest.writeString(overview);
+        dest.writeDouble(userRating);
+        dest.writeLong(releaseDate.getTime());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    static final Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel parcel) {
+            return new Movie(parcel);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    @Override
+    public String toString() {
+        return this.getTitle() + " Picture nr " + this.getThumbnails();
     }
 
     public String getTitle() {
@@ -42,11 +92,11 @@ public class Movie {
         this.title = title;
     }
 
-    public MediaStore.Images.Thumbnails getThumbnails() {
+    public Integer getThumbnails() {
         return thumbnails;
     }
 
-    public void setThumbnails(MediaStore.Images.Thumbnails thumbnails) {
+    public void setThumbnails(Integer thumbnails) {
         this.thumbnails = thumbnails;
     }
 
@@ -58,11 +108,11 @@ public class Movie {
         this.overview = overview;
     }
 
-    public Float getUserRating() {
+    public Double getUserRating() {
         return userRating;
     }
 
-    public void setUserRating(Float userRating) {
+    public void setUserRating(Double userRating) {
         this.userRating = userRating;
     }
 

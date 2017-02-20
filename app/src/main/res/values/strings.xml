@@ -2,4 +2,12 @@
     <string name="app_name">Movapp</string>
     <string name="refresh">Refresh</string>
     <string name="sort">Sort</string>
+    <string name="Title">title</string>
+    <string name="title">Title</string>
+    <string name="movie_duration">999 min</string>
+    <string name="_2025">2025</string>
+    <string name="movie_rating">6.4/10</string>
+    <string name="movie_release">2025</string>
+    <string name="mark_as_favorite">Mark as favorite</string>
+    <string name="movie_description">Movie about nothing</string>
 </resources>

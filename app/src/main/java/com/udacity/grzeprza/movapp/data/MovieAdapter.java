@@ -1,42 +1,50 @@
 package com.udacity.grzeprza.movapp.data;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.grzeprza.movapp.R;
+
+import java.lang.reflect.Array;
+import java.util.List;
 
 /**
  * Created by grzeprza on 19.02.2017.
  */
 
 /**Class handles fetching data into {@link android.widget.GridView}*/
-public class MovieAdapter extends BaseAdapter {
+public class MovieAdapter extends ArrayAdapter<Movie> {
 
+    private List<Movie> movies;
     private Context context;
 
-    public MovieAdapter(Context context) {
+    public MovieAdapter(Context context, List<Movie> objects) {
+        super(context, 0, objects);
         this.context = context;
+        this.movies = objects;
     }
 
     @Override
     public int getCount() {
-        return mThumbIds.length;
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return mThumbIds[i];
+        return movies.size();
     }
 
     @Override
     public long getItemId(int i) {
         return 0;
+    }
+
+    @Nullable
+    @Override
+    public Movie getItem(int position) {
+        return movies.get(position);
     }
 
     @Override
@@ -51,24 +59,8 @@ public class MovieAdapter extends BaseAdapter {
         }
         else imageView = (ImageView) view;
 
-        Picasso.with(context).load(mThumbIds[i]).into(imageView);
+        Picasso.with(context).load(movies.get(i).getThumbnails()).into(imageView);
 
         return imageView;
     }
-
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
-    };
-
 }
