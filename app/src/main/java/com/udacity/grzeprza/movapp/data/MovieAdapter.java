@@ -1,7 +1,9 @@
 package com.udacity.grzeprza.movapp.data;
 
 import android.content.Context;
+import android.net.NetworkInfo;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,8 +13,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.grzeprza.movapp.network.NetworkUtils;
+
+import org.json.JSONArray;
 
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,6 +28,8 @@ import java.util.List;
 
 /**Class handles fetching data into {@link android.widget.GridView}*/
 public class MovieAdapter extends ArrayAdapter<Movie> {
+
+    private final String LOG_TAG = this.getClass().getSimpleName();
 
     private List<Movie> movies;
     private Context context;
@@ -59,8 +68,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         }
         else imageView = (ImageView) view;
 
-        Picasso.with(context).load(movies.get(i).getThumbnails()).into(imageView);
-
+        URL posterURL = NetworkUtils.ImageHandling.buildImageURL(movies.get(i).getThumbnails(), NetworkUtils.ImageHandling.IMAGE_SIZE.MEDIUM);
+        Picasso.with(context).load(posterURL.toString()).into(imageView);
         return imageView;
     }
 }

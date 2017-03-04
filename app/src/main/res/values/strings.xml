@@ -10,4 +10,6 @@
     <string name="movie_release">2025</string>
     <string name="mark_as_favorite">Mark as favorite</string>
     <string name="movie_description">Movie about nothing</string>
+    <string name="API_KEY">TEMP_KEY</string>
+    <string name="no_internet_connection">No internet connection</string>
 </resources>

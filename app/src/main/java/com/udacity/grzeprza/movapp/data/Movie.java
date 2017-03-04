@@ -17,7 +17,7 @@ public class Movie implements Parcelable{
     private String title;
 
     /**Variable stoes movie thumbnails*/
-    private Integer thumbnails;
+    private String thumbnails;
 
     /**Variable stores movie overview, called also plot synopsis*/
     private String overview;
@@ -33,7 +33,7 @@ public class Movie implements Parcelable{
     }
 
     /**Movie constructor*/
-    public Movie(String title, Integer thumbnails, String overview, Double userRating, Date releaseDate) {
+    public Movie(String title, String thumbnails, String overview, Double userRating, Date releaseDate) {
         this.title = title;
         this.thumbnails = thumbnails;
         this.overview = overview;
@@ -44,19 +44,17 @@ public class Movie implements Parcelable{
     /**Parcelable Movie constructor*/
     public Movie(Parcel in) {
         this.title = in.readString();
-        this.thumbnails = in.readInt();
+        this.thumbnails = in.readString();
         this.overview = in.readString();
         this.userRating = in.readDouble();
         this.releaseDate = new Date(in.readLong());
 
     }
 
-
-
     @Override
     public void writeToParcel(Parcel dest, int i) {
         dest.writeString(title);
-        dest.writeInt(thumbnails);
+        dest.writeString(thumbnails);
         dest.writeString(overview);
         dest.writeDouble(userRating);
         dest.writeLong(releaseDate.getTime());
@@ -79,6 +77,8 @@ public class Movie implements Parcelable{
         }
     };
 
+
+
     @Override
     public String toString() {
         return this.getTitle() + " Picture nr " + this.getThumbnails();
@@ -92,11 +92,11 @@ public class Movie implements Parcelable{
         this.title = title;
     }
 
-    public Integer getThumbnails() {
+    public String getThumbnails() {
         return thumbnails;
     }
 
-    public void setThumbnails(Integer thumbnails) {
+    public void setThumbnails(String thumbnails) {
         this.thumbnails = thumbnails;
     }
 
@@ -123,4 +123,5 @@ public class Movie implements Parcelable{
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
 }
