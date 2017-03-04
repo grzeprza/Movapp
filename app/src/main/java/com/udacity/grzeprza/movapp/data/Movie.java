@@ -65,7 +65,7 @@ public class Movie implements Parcelable{
         return 0;
     }
 
-    static final Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel parcel) {
             return new Movie(parcel);

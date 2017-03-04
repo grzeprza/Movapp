@@ -103,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isOnline() {
         ConnectivityManager conMan = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-        if(netInfo != null && netInfo.isConnectedOrConnecting()) return false;
-        else return true;
+        return !(netInfo != null && netInfo.isConnectedOrConnecting());
     }
 
     @Override

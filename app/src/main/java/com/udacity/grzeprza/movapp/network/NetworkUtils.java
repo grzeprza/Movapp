@@ -38,7 +38,7 @@ public class NetworkUtils {
                 .buildUpon()
                 .appendPath(movies)
                 //TODO: provide own API KEY below as second parameter
-                .appendQueryParameter(API_KEY, "YOU_API_KEY_HERE")
+                .appendQueryParameter(API_KEY, "YOUR_API_KEY")
                 .build();
 
         URL url = null;

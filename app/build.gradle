@@ -31,4 +31,9 @@ dependencies {
     //JUnit [not used] for unit tests
     testCompile 'junit:junit:4.12'
     //compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+
+    //ButterKnife
+    //compile 'com.jakewharton:butterknife:8.5.1'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
 }
